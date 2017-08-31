@@ -17,7 +17,6 @@ package cc
 import (
 	"fmt"
 	"sort"
-	"strconv"
 	"strings"
 
 	"android/soong/android"
@@ -109,14 +108,6 @@ func makeVarsProvider(ctx android.MakeVarsContext) {
 	if len(deviceTargets) > 1 {
 		makeVarsToolchain(ctx, "2ND_", deviceTargets[1])
 	}
-
-	if config.SDClang {
-		ctx.Strict("SDCLANG", strconv.FormatBool(config.SDClang))
-	}
-	ctx.Strict("SDCLANG_PATH", "${config.SDClangBin}")
-	ctx.Strict("SDCLANG_PATH_2", "${config.SDClangBin2}")
-	ctx.Strict("SDCLANG_COMMON_FLAGS", "${config.SDClangFlags}")
-	ctx.Strict("SDCLANG_COMMON_FLAGS_2", "${config.SDClangFlags2}")
 }
 
 func makeVarsToolchain(ctx android.MakeVarsContext, secondPrefix string,
